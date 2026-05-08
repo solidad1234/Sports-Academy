@@ -1,0 +1,51 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "creation": "2026-05-08 09:49:00",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "athlete",
+  "full_name",
+  "status"
+ ],
+ "fields": [
+  {
+   "fieldname": "athlete",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Athlete",
+   "options": "Athlete",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "athlete.full_name",
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Full Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Present\nAbsent\nExcused",
+   "default": "Present"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-05-08 09:49:00",
+ "modified_by": "Administrator",
+ "module": "Sports Academy",
+ "name": "Training Attendance",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

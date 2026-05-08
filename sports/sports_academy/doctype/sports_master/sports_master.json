@@ -1,0 +1,68 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:sport_name",
+ "creation": "2026-05-08 09:44:00",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "sport_name",
+  "type",
+  "column_break_1",
+  "category"
+ ],
+ "fields": [
+  {
+   "fieldname": "sport_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Sport Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "Team\nIndividual",
+   "reqd": 1
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Select",
+   "label": "Category",
+   "options": "Ball Game\nAthletics\nCombat\nWater Sports\nRacket Sports\nOther"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-05-08 10:34:14.199080",
+ "modified_by": "Administrator",
+ "module": "Sports Academy",
+ "name": "Sports Master",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
