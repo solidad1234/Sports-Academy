@@ -1,6 +1,5 @@
 {
  "actions": [],
- "allow_import": 1,
  "creation": "2026-05-08 09:51:00",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -10,7 +9,11 @@
   "full_name",
   "minutes_played",
   "goals_scored",
-  "assists"
+  "column_break_ojas",
+  "assists",
+  "time_seconds",
+  "distance_meters",
+  "position"
  ],
  "fields": [
   {
@@ -46,17 +49,40 @@
    "fieldtype": "Int",
    "in_list_view": 1,
    "label": "Assists"
+  },
+  {
+   "fieldname": "time_seconds",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Time (Seconds)"
+  },
+  {
+   "fieldname": "distance_meters",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Distance (Meters)"
+  },
+  {
+   "fieldname": "position",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Rank/Position"
+  },
+  {
+   "fieldname": "column_break_ojas",
+   "fieldtype": "Column Break"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2026-05-08 09:51:00",
+ "modified": "2026-05-08 11:30:45.358055",
  "modified_by": "Administrator",
  "module": "Sports Academy",
  "name": "Match Statistic",
  "owner": "Administrator",
  "permissions": [],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
