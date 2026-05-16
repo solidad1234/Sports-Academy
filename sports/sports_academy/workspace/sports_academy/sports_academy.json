@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"MqYgzmDLsw\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Sports Academy</span>\",\"col\":12}},{\"id\":\"WDsWd0FvXZ\",\"type\":\"card\",\"data\":{\"card_name\":\"Shortcuts\",\"col\":4}},{\"id\":\"1y20pFS_BX\",\"type\":\"card\",\"data\":{\"card_name\":\"Dashboards\",\"col\":4}}]",
+ "content": "[{\"id\":\"MqYgzmDLsw\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Sports Academy</span>\",\"col\":12}},{\"id\":\"WDsWd0FvXZ\",\"type\":\"card\",\"data\":{\"card_name\":\"Shortcuts\",\"col\":4}},{\"id\":\"1y20pFS_BX\",\"type\":\"card\",\"data\":{\"card_name\":\"Dashboards\",\"col\":4}},{\"id\":\"BJNL5dthR9\",\"type\":\"card\",\"data\":{\"card_name\":\"Categories\",\"col\":4}}]",
  "creation": "2026-05-08 10:25:29.717172",
  "custom_blocks": [],
  "docstatus": 0,
@@ -13,6 +13,45 @@
  "is_hidden": 0,
  "label": "Sports Academy",
  "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Dashboards",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sports Dashboard",
+   "link_count": 0,
+   "link_to": "sports-dashboard",
+   "link_type": "Page",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Team Analytics",
+   "link_count": 0,
+   "link_to": "sports-management-dashboard",
+   "link_type": "Page",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Athlete Analytics",
+   "link_count": 0,
+   "link_to": "athlete-analytics",
+   "link_type": "Page",
+   "onboard": 0,
+   "type": "Link"
+  },
   {
    "hidden": 0,
    "is_query_report": 0,
@@ -75,7 +114,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Injury Record",
+   "label": "Incidence Record",
    "link_count": 0,
    "link_to": "Incidence Record",
    "link_type": "DocType",
@@ -95,8 +134,8 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Dashboards",
-   "link_count": 3,
+   "label": "Categories",
+   "link_count": 2,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
@@ -104,35 +143,25 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Sports Dashboard",
+   "label": "Incidence Category",
    "link_count": 0,
-   "link_to": "sports-dashboard",
-   "link_type": "Page",
+   "link_to": "Incidence Category",
+   "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
   },
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Team Analytics",
+   "label": "Event Type",
    "link_count": 0,
-   "link_to": "sports-management-dashboard",
-   "link_type": "Page",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Athlete Analytics",
-   "link_count": 0,
-   "link_to": "athlete-analytics",
-   "link_type": "Page",
+   "link_to": "Event Type",
+   "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
   }
  ],
- "modified": "2026-05-16 11:00:08.774370",
+ "modified": "2026-05-16 11:23:05.705783",
  "modified_by": "Administrator",
  "module": "Sports Academy",
  "name": "Sports Academy",
