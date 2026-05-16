@@ -7,6 +7,7 @@
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
+  "event_type",
   "competition_type",
   "sport",
   "team",
@@ -17,15 +18,27 @@
   "result",
   "our_score",
   "opponent_score",
+  "status",
+  "section_team_stats",
+  "total_yellow_cards",
+  "total_red_cards",
+  "total_corners",
+  "column_break_kmcn",
+  "possession",
+  "fouls",
+  "shots_on_target",
   "section_break_1",
-  "statistics"
+  "statistics",
+  "section_break_bvwb",
+  "remarks"
  ],
  "fields": [
   {
-   "fieldname": "naming_series",
-   "fieldtype": "Select",
-   "label": "Series",
-   "options": "MATCH-.YYYY.-.MM.-\nMEET-.YYYY.-.MM.-",
+   "fieldname": "event_type",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Event Type",
+   "options": "Event Type",
    "reqd": 1
   },
   {
@@ -67,7 +80,7 @@
    "fieldtype": "Date",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Match Date",
+   "label": "Event Date",
    "reqd": 1
   },
   {
@@ -101,6 +114,41 @@
    "label": "Opponent Score"
   },
   {
+   "fieldname": "section_team_stats",
+   "fieldtype": "Section Break",
+   "label": "Team Statistics"
+  },
+  {
+   "fieldname": "total_yellow_cards",
+   "fieldtype": "Int",
+   "label": "Total Yellow Cards"
+  },
+  {
+   "fieldname": "total_red_cards",
+   "fieldtype": "Int",
+   "label": "Total Red Cards"
+  },
+  {
+   "fieldname": "total_corners",
+   "fieldtype": "Int",
+   "label": "Total Corners"
+  },
+  {
+   "fieldname": "possession",
+   "fieldtype": "Percent",
+   "label": "Possession (%)"
+  },
+  {
+   "fieldname": "shots_on_target",
+   "fieldtype": "Int",
+   "label": "Shots on Target"
+  },
+  {
+   "fieldname": "fouls",
+   "fieldtype": "Int",
+   "label": "Total Fouls"
+  },
+  {
    "fieldname": "section_break_1",
    "fieldtype": "Section Break",
    "label": "Athlete Results & Statistics"
@@ -109,15 +157,44 @@
    "fieldname": "statistics",
    "fieldtype": "Table",
    "label": "Results",
-   "options": "Match Statistic"
+   "options": "Event Statistic"
+  },
+  {
+   "default": "EVENT-.YYYY.-.MM.-",
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "label": "Series",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_kmcn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "\nUpcoming\nCompleted\nPostponed\nCancelled",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_bvwb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-05-08 11:28:58.076135",
+ "modified": "2026-05-16 11:02:38.396605",
  "modified_by": "Administrator",
  "module": "Sports Academy",
- "name": "Match Log",
+ "name": "Event Log",
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [

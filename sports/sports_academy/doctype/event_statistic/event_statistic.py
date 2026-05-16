@@ -1,5 +1,5 @@
 import frappe
 from frappe.model.document import Document
 
-class InjuryRecord(Document):
-    pass
+class EventStatistic(Document):
+	pass

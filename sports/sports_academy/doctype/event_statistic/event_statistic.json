@@ -1,0 +1,188 @@
+{
+ "actions": [],
+ "creation": "2026-05-16 09:55:00",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "athlete",
+  "full_name",
+  "minutes_played",
+  "goals",
+  "assists",
+  "column_break_1",
+  "yellow_cards",
+  "red_cards",
+  "fouls_committed",
+  "fouls_suffered",
+  "section_elite_stats",
+  "clean_sheets",
+  "saves",
+  "shots_blocked",
+  "interceptions",
+  "column_break_other_sports",
+  "rebounds",
+  "wickets",
+  "passing_accuracy",
+  "tackles",
+  "section_break_athletics",
+  "time_taken",
+  "distance_covered",
+  "column_break_ueut",
+  "rank",
+  "section_break_zjbg",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "athlete",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Athlete",
+   "options": "Athlete",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "athlete.full_name",
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Full Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "minutes_played",
+   "fieldtype": "Int",
+   "label": "Minutes Played"
+  },
+  {
+   "fieldname": "goals",
+   "fieldtype": "Int",
+   "label": "Goals/Points"
+  },
+  {
+   "fieldname": "assists",
+   "fieldtype": "Int",
+   "label": "Assists"
+  },
+  {
+   "fieldname": "yellow_cards",
+   "fieldtype": "Int",
+   "label": "Yellow Cards"
+  },
+  {
+   "fieldname": "red_cards",
+   "fieldtype": "Int",
+   "label": "Red Cards"
+  },
+  {
+   "fieldname": "fouls_committed",
+   "fieldtype": "Int",
+   "label": "Fouls Committed"
+  },
+  {
+   "fieldname": "fouls_suffered",
+   "fieldtype": "Int",
+   "label": "Fouls Suffered"
+  },
+  {
+   "fieldname": "section_elite_stats",
+   "fieldtype": "Section Break",
+   "label": "Match Stats"
+  },
+  {
+   "fieldname": "clean_sheets",
+   "fieldtype": "Int",
+   "label": "Clean Sheets"
+  },
+  {
+   "fieldname": "saves",
+   "fieldtype": "Int",
+   "label": "Saves"
+  },
+  {
+   "fieldname": "shots_blocked",
+   "fieldtype": "Int",
+   "label": "Shots Blocked"
+  },
+  {
+   "fieldname": "interceptions",
+   "fieldtype": "Int",
+   "label": "Interceptions"
+  },
+  {
+   "fieldname": "tackles",
+   "fieldtype": "Int",
+   "label": "Tackles"
+  },
+  {
+   "fieldname": "passing_accuracy",
+   "fieldtype": "Percent",
+   "label": "Passing Accuracy"
+  },
+  {
+   "fieldname": "column_break_other_sports",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "rebounds",
+   "fieldtype": "Int",
+   "label": "Rebounds (Basketball)"
+  },
+  {
+   "fieldname": "wickets",
+   "fieldtype": "Int",
+   "label": "Wickets (Cricket)"
+  },
+  {
+   "fieldname": "section_break_athletics",
+   "fieldtype": "Section Break",
+   "label": "Athletics/Swimming Stats"
+  },
+  {
+   "fieldname": "time_taken",
+   "fieldtype": "Float",
+   "label": "Time (Seconds)"
+  },
+  {
+   "fieldname": "distance_covered",
+   "fieldtype": "Float",
+   "label": "Distance (Meters)"
+  },
+  {
+   "fieldname": "rank",
+   "fieldtype": "Int",
+   "label": "Rank/Position"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "column_break_ueut",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_zjbg",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-05-16 10:55:16.407153",
+ "modified_by": "Administrator",
+ "module": "Sports Academy",
+ "name": "Event Statistic",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
