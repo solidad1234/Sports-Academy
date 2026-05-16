@@ -115,7 +115,7 @@ def get_upcoming_sessions(team=None):
         limit=5
     )
 
-def get_top_performers(sport=None, team=None, limit=5):
+def get_top_performers(athlete=None, sport=None, team=None, limit=5):
     query = """
         select 
             es.athlete, 
@@ -131,6 +131,9 @@ def get_top_performers(sport=None, team=None, limit=5):
         where 1=1
     """
     params = []
+    if athlete:
+        query += " and es.athlete = %s"
+        params.append(athlete)
     if sport:
         query += " and el.sport = %s"
         params.append(sport)

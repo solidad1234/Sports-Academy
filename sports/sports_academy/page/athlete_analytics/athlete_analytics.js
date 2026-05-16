@@ -5,10 +5,21 @@ frappe.pages['athlete-analytics'].on_page_load = function(wrapper) {
 		single_column: true,
 	});
 
+	// Standard Frappe page filters
+	page.add_field({
+		fieldname: 'athlete_filter', label: __('Athlete'), fieldtype: 'Link', options: 'Athlete',
+		onchange: () => loadData()
+	});
+
+	page.add_field({
+		fieldname: 'team_filter', label: __('Team'), fieldtype: 'Link', options: 'Sports Team',
+		onchange: () => loadData()
+	});
+
 	var html_content = `
 	<style>
 		.analytics-container { padding: 24px; background: #f8fafc; min-height: 100vh; }
-		.filter-bar { background: white; padding: 20px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: flex; gap: 20px; align-items: center; }
+		.tab-bar { background: white; padding: 15px 20px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: flex; gap: 15px; }
 		.stats-table-card { background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); overflow: hidden; }
 		.stats-table { width: 100%; border-collapse: collapse; }
 		.stats-table th { background: #f1f5f9; padding: 15px; text-align: left; font-size: 12px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid #e2e8f0; }
@@ -17,23 +28,21 @@ frappe.pages['athlete-analytics'].on_page_load = function(wrapper) {
 		.rank-badge { background: #e2e8f0; color: #475569; padding: 4px 8px; border-radius: 6px; font-weight: 700; font-size: 12px; }
 		.score-pill { background: #dbeafe; color: #1e40af; padding: 4px 10px; border-radius: 20px; font-weight: 700; }
 		.discipline-pill { background: #fee2e2; color: #991b1b; padding: 4px 10px; border-radius: 20px; font-weight: 700; }
-		.tab-btn { padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s; border: 1px solid #e2e8f0; }
+		.tab-btn { padding: 8px 16px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s; border: 1px solid #e2e8f0; }
 		.tab-btn.active { background: #1e293b; color: white; border-color: #1e293b; }
 	</style>
 
 	<div class="analytics-container">
-		<div class="filter-bar">
+		<div class="tab-bar">
 			<div class="tab-btn active" data-cat="performance">Performance Leaderboard</div>
 			<div class="tab-btn" data-cat="discipline">Discipline & Fair Play</div>
-			<div style="flex: 1"></div>
-			<button class="btn btn-primary btn-sm" onclick="location.reload()"><i class="fas fa-sync"></i> Refresh</button>
 		</div>
 
 		<div class="stats-table-card">
 			<table class="stats-table">
 				<thead id="table-head"></thead>
 				<tbody id="table-body">
-					<tr><td colspan="10" class="text-center p-5">Fetching data...</td></tr>
+					<tr><td colspan="10" class="text-center p-5 text-muted">Initialising analytics data...</td></tr>
 				</tbody>
 			</table>
 		</div>
@@ -41,13 +50,20 @@ frappe.pages['athlete-analytics'].on_page_load = function(wrapper) {
 	`;
 
 	$(html_content).appendTo(page.body);
+	page.set_primary_action('Refresh', () => loadData(), 'fa fa-sync');
 
 	let current_cat = "performance";
 
 	function loadData() {
+		const args = {
+			category: current_cat,
+			athlete: page.fields_dict['athlete_filter'].get_value(),
+			team: page.fields_dict['team_filter'].get_value()
+		};
+
 		frappe.call({
 			method: 'sports.sports_academy.page.athlete_analytics.athlete_analytics.get_detailed_stats',
-			args: { category: current_cat },
+			args: args,
 			callback: function(r) {
 				renderTable(r.message || []);
 			}
@@ -70,6 +86,7 @@ frappe.pages['athlete-analytics'].on_page_load = function(wrapper) {
 					<th>Performance Score</th>
 				</tr>
 			`);
+			if (data.length === 0) $body.append('<tr><td colspan="7" class="text-center p-5 text-muted">No performance data matches your filters.</td></tr>');
 			data.forEach((d, i) => {
 				$body.append(`
 					<tr>
@@ -94,6 +111,7 @@ frappe.pages['athlete-analytics'].on_page_load = function(wrapper) {
 					<th>Status</th>
 				</tr>
 			`);
+			if (data.length === 0) $body.append('<tr><td colspan="6" class="text-center p-5 text-muted">No discipline data matches your filters.</td></tr>');
 			data.forEach((d, i) => {
 				$body.append(`
 					<tr>
