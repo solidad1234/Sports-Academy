@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestInjuryRecord(FrappeTestCase):
+class TestIncidenceRecord(FrappeTestCase):
 	pass

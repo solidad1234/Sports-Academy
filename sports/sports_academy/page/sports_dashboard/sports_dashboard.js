@@ -1,11 +1,10 @@
 frappe.pages['sports-dashboard'].on_page_load = function(wrapper) {
 	const page = frappe.ui.make_app_page({
 		parent: wrapper,
-		title: "Sports Academy Analytics",
+		title: "Academy Overview",
 		single_column: true,
 	});
 
-	// CSS and HTML Template
 	var html_content = `
 	<style>
 		@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
@@ -36,18 +35,9 @@ frappe.pages['sports-dashboard'].on_page_load = function(wrapper) {
 			color: white;
 		}
 
-		.welcome-header p {
-			opacity: 0.8;
-			margin: 0;
-			font-size: 14px;
-		}
+		.welcome-header p { opacity: 0.8; margin: 0; font-size: 14px; }
 
-		.stats-grid {
-			display: grid;
-			grid-template-columns: repeat(5, 1fr);
-			gap: 20px;
-			margin-bottom: 24px;
-		}
+		.stats-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; margin-bottom: 24px; }
 
 		.stat-card {
 			background: white;
@@ -55,10 +45,7 @@ frappe.pages['sports-dashboard'].on_page_load = function(wrapper) {
 			padding: 20px;
 			box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 			border-top: 4px solid #3b82f6;
-			transition: transform 0.2s;
 		}
-
-		.stat-card:hover { transform: translateY(-3px); }
 		.stat-card.accent-green { border-top-color: #10b981; }
 		.stat-card.accent-orange { border-top-color: #f59e0b; }
 		.stat-card.accent-red { border-top-color: #ef4444; }
@@ -68,19 +55,9 @@ frappe.pages['sports-dashboard'].on_page_load = function(wrapper) {
 		.stat-value { font-size: 28px; font-weight: 800; color: #1e293b; margin-bottom: 4px; }
 		.stat-label { font-size: 12px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
 
-		.charts-grid {
-			display: grid;
-			grid-template-columns: 2fr 1fr;
-			gap: 24px;
-			margin-bottom: 24px;
-		}
+		.charts-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; margin-bottom: 24px; }
 
-		.dashboard-card {
-			background: white;
-			border-radius: 12px;
-			padding: 24px;
-			box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-		}
+		.dashboard-card { background: white; border-radius: 12px; padding: 24px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
 
 		.card-title {
 			font-size: 16px;
@@ -88,74 +65,41 @@ frappe.pages['sports-dashboard'].on_page_load = function(wrapper) {
 			color: #1e293b;
 			margin-bottom: 20px;
 			display: flex;
+			justify-content: space-between;
 			align-items: center;
-			gap: 10px;
 		}
 
-		.player-item {
-			display: flex;
-			align-items: center;
-			padding: 12px;
-			border-radius: 8px;
-			margin-bottom: 8px;
-			transition: background 0.2s;
-		}
+		.clickable-icon { cursor: pointer; color: #94a3b8; transition: color 0.2s; }
+		.clickable-icon:hover { color: #2563eb; }
 
-		.player-item:hover { background: #f8fafc; }
-
-		.player-rank {
-			width: 24px;
-			font-weight: 800;
-			color: #94a3b8;
-		}
-
+		.player-item { display: flex; align-items: center; padding: 12px; border-radius: 8px; margin-bottom: 8px; }
 		.player-avatar {
-			width: 36px;
-			height: 36px;
-			background: #e2e8f0;
-			border-radius: 50%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			font-weight: 700;
-			color: #475569;
-			margin-right: 12px;
+			width: 36px; height: 36px; background: #e2e8f0; border-radius: 50%;
+			display: flex; align-items: center; justify-content: center; font-weight: 700;
+			color: #475569; margin-right: 12px;
 		}
-
 		.player-info { flex: 1; }
 		.player-name { font-weight: 600; color: #1e293b; font-size: 14px; }
 		.player-sport { font-size: 11px; color: #64748b; }
-		.player-score { font-weight: 700; color: #2563eb; font-size: 14px; }
-
-		.table-wrapper { overflow-x: auto; }
-		.modern-table { width: 100%; border-collapse: collapse; }
-		.modern-table th { text-align: left; padding: 12px; font-size: 12px; color: #64748b; border-bottom: 2px solid #f1f5f9; }
-		.modern-table td { padding: 12px; font-size: 13px; border-bottom: 1px solid #f1f5f9; }
-		
-		.badge {
-			padding: 4px 10px;
-			border-radius: 12px;
-			font-size: 11px;
-			font-weight: 600;
-		}
-		.badge-success { background: #dcfce7; color: #166534; }
-		.badge-danger { background: #fee2e2; color: #991b1b; }
-		.badge-warning { background: #fef3c7; color: #92400e; }
+		.player-score { font-weight: 700; color: #2563eb; font-size: 14px; text-align: right;}
 	</style>
 
 	<div class="sports-dashboard">
-		<!-- Header -->
 		<div class="welcome-header">
 			<div>
-				<h1><i class="fas fa-trophy"></i> Sports Academy Performance</h1>
-				<p>Real-time tracking of athletes, teams, and match analytics</p>
+				<h1><i class="fas fa-university"></i> Academy Global Overview</h1>
+				<p>Consolidated statistics across all sports and elite teams</p>
 			</div>
-			<button class="btn btn-primary btn-sm" id="refresh-dashboard">
-				<i class="fas fa-sync-alt"></i> Refresh Data
-			</button>
+			<div class="flex gap-2">
+				<button class="btn btn-default btn-sm" onclick="frappe.set_route('sports-management-dashboard')">
+					<i class="fas fa-chart-pie"></i> Team Analytics
+				</button>
+				<button class="btn btn-primary btn-sm" id="refresh-dashboard" style="margin-left: 10px;">
+					<i class="fas fa-sync-alt"></i> Refresh
+				</button>
+			</div>
 		</div>
 
-		<!-- Stats -->
 		<div class="stats-grid">
 			<div class="stat-card">
 				<div class="stat-icon"><i class="fas fa-users"></i></div>
@@ -169,29 +113,34 @@ frappe.pages['sports-dashboard'].on_page_load = function(wrapper) {
 			</div>
 			<div class="stat-card accent-orange">
 				<div class="stat-icon"><i class="fas fa-running"></i></div>
-				<div class="stat-value" id="stat-matches">0</div>
-				<div class="stat-label">Matches Played</div>
+				<div class="stat-value" id="stat-events">0</div>
+				<div class="stat-label">Events Logged</div>
 			</div>
 			<div class="stat-card accent-red">
-				<div class="stat-icon"><i class="fas fa-medkit"></i></div>
-				<div class="stat-value" id="stat-injuries">0</div>
-				<div class="stat-label">Injuries</div>
+				<div class="stat-icon"><i class="fas fa-exclamation-triangle"></i></div>
+				<div class="stat-value" id="stat-incidents">0</div>
+				<div class="stat-label">Pending Incidents</div>
 			</div>
 			<div class="stat-card accent-purple">
 				<div class="stat-icon"><i class="fas fa-star"></i></div>
 				<div class="stat-value" id="stat-winrate">0%</div>
-				<div class="stat-label">Win Rate</div>
+				<div class="stat-label">Overall Win Rate</div>
 			</div>
 		</div>
 
-		<!-- Charts Section -->
 		<div class="charts-grid">
 			<div class="dashboard-card">
-				<div class="card-title"><i class="fas fa-chart-line"></i> Performance Trend (Goals & Assists)</div>
+				<div class="card-title">
+					<span><i class="fas fa-chart-bar"></i> Academy Performance Trend</span>
+					<small class="text-muted">Aggregate Score</small>
+				</div>
 				<div style="height: 350px;"><canvas id="trend-chart"></canvas></div>
 			</div>
 			<div class="dashboard-card">
-				<div class="card-title"><i class="fas fa-medal"></i> Top Performers</div>
+				<div class="card-title">
+					<span><i class="fas fa-medal"></i> Academy Top Prospects</span>
+					<i class="fas fa-arrow-right clickable-icon" onclick="frappe.set_route('athlete-analytics')"></i>
+				</div>
 				<div id="top-performers-list">
 					<div class="text-center text-muted p-5">Loading leaderboard...</div>
 				</div>
@@ -200,20 +149,15 @@ frappe.pages['sports-dashboard'].on_page_load = function(wrapper) {
 
 		<div class="charts-grid">
 			<div class="dashboard-card">
-				<div class="card-title"><i class="fas fa-calendar-alt"></i> Upcoming Training Sessions</div>
-				<div class="table-wrapper">
-					<table class="modern-table">
-						<thead>
-							<tr><th>Team</th><th>Date</th><th>Time</th><th>Venue</th><th>Coach</th></tr>
-						</thead>
-						<tbody id="sessions-table-body">
-							<tr><td colspan="5" class="text-center p-4">No sessions scheduled</td></tr>
-						</tbody>
-					</table>
+				<div class="card-title">
+					<span><i class="fas fa-users"></i> Athlete Distribution by Sport</span>
 				</div>
+				<div style="height: 250px;"><canvas id="distribution-chart"></canvas></div>
 			</div>
 			<div class="dashboard-card">
-				<div class="card-title"><i class="fas fa-chart-pie"></i> Match Outcomes</div>
+				<div class="card-title">
+					<span><i class="fas fa-chart-pie"></i> Match Outcomes</span>
+				</div>
 				<div style="height: 250px;"><canvas id="results-chart"></canvas></div>
 			</div>
 		</div>
@@ -222,22 +166,11 @@ frappe.pages['sports-dashboard'].on_page_load = function(wrapper) {
 
 	$(html_content).appendTo(page.body);
 
-	// Load Chart.js
-	function loadChartLibrary() {
-		return new Promise((resolve, reject) => {
-			if (typeof Chart !== "undefined") { resolve(); return; }
-			const script = document.createElement("script");
-			script.src = "https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js";
-			script.onload = () => resolve();
-			script.onerror = () => reject();
-			document.head.appendChild(script);
-		});
-	}
-
 	let lineChart = null;
 	let pieChart = null;
+	let distChart = null;
 
-	async function loadDashboard() {
+	function loadDashboard() {
 		frappe.call({
 			method: 'sports.sports_academy.page.sports_dashboard.sports_dashboard.get_dashboard_data',
 			callback: function(r) {
@@ -245,12 +178,19 @@ frappe.pages['sports-dashboard'].on_page_load = function(wrapper) {
 					const data = r.message;
 					renderStats(data.summary);
 					renderTopPerformers(data.top_performers);
-					renderSessions(data.upcoming_sessions);
 					
-					loadChartLibrary().then(() => {
-						renderLineChart(data.performance_progress);
-						renderPieChart(data.match_results);
-					});
+					if (typeof Chart !== "undefined") {
+						renderTrendChart(data.performance_progress);
+						renderPieChart(data.event_results);
+						renderDistributionChart(data.athletes_by_sport);
+					} else {
+						// Load Chart.js if not available
+						$.getScript("https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js").done(() => {
+							renderTrendChart(data.performance_progress);
+							renderPieChart(data.event_results);
+							renderDistributionChart(data.athletes_by_sport);
+						});
+					}
 				}
 			}
 		});
@@ -259,111 +199,81 @@ frappe.pages['sports-dashboard'].on_page_load = function(wrapper) {
 	function renderStats(summary) {
 		$("#stat-athletes").text(summary.total_athletes);
 		$("#stat-teams").text(summary.active_teams);
-		$("#stat-matches").text(summary.matches_played);
-		$("#stat-injuries").text(summary.active_injuries);
+		$("#stat-events").text(summary.events_played);
+		$("#stat-incidents").text(summary.active_incidents);
 		$("#stat-winrate").text(summary.win_rate + '%');
 	}
 
 	function renderTopPerformers(players) {
 		const $list = $("#top-performers-list").empty();
-		if (!players || players.length === 0) {
-			$list.append('<div class="text-center text-muted p-4">No data available</div>');
-			return;
-		}
 		players.forEach((p, i) => {
 			const initial = p.full_name ? p.full_name.charAt(0) : '?';
 			$list.append(`
 				<div class="player-item">
-					<div class="player-rank">#${i+1}</div>
 					<div class="player-avatar">${initial}</div>
 					<div class="player-info">
 						<div class="player-name">${p.full_name}</div>
 						<div class="player-sport">${p.primary_sport}</div>
 					</div>
-					<div class="player-score">${p.goals} G / ${p.assists} A</div>
+					<div class="player-score">${p.performance_score} pts</div>
 				</div>
 			`);
 		});
 	}
 
-	function renderSessions(sessions) {
-		const $tbody = $("#sessions-table-body").empty();
-		if (!sessions || sessions.length === 0) {
-			$tbody.append('<tr><td colspan="5" class="text-center p-4">No sessions scheduled</td></tr>');
-			return;
-		}
-		sessions.forEach(s => {
-			$tbody.append(`
-				<tr>
-					<td><strong>${s.team}</strong></td>
-					<td>${frappe.datetime.str_to_user(s.date)}</td>
-					<td>${s.start_time || '--:--'}</td>
-					<td>${s.venue || 'Field'}</td>
-					<td>${s.coach}</td>
-				</tr>
-			`);
+	function renderTrendChart(progress) {
+		const ctx = document.getElementById("trend-chart").getContext("2d");
+		if (lineChart) lineChart.destroy();
+		lineChart = new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: progress.map(d => d.month),
+				datasets: [{
+					label: 'Academy Performance',
+					data: progress.map(d => (d.goals * 3) + d.assists),
+					backgroundColor: '#3b82f6',
+					borderRadius: 6
+				}]
+			},
+			options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
 		});
 	}
 
-	function renderLineChart(progress) {
-		const ctx = document.getElementById("trend-chart").getContext("2d");
-		if (lineChart) lineChart.destroy();
-		
-		lineChart = new Chart(ctx, {
-			type: 'line',
+	function renderDistributionChart(dist) {
+		const ctx = document.getElementById("distribution-chart").getContext("2d");
+		if (distChart) distChart.destroy();
+		distChart = new Chart(ctx, {
+			type: 'bar',
 			data: {
-				labels: progress.map(d => d.month),
-				datasets: [
-					{
-						label: 'Goals',
-						data: progress.map(d => d.goals),
-						borderColor: '#3b82f6',
-						backgroundColor: 'rgba(59, 130, 246, 0.1)',
-						fill: true,
-						tension: 0.4
-					},
-					{
-						label: 'Assists',
-						data: progress.map(d => d.assists),
-						borderColor: '#10b981',
-						backgroundColor: 'rgba(16, 185, 129, 0.1)',
-						fill: true,
-						tension: 0.4
-					}
-				]
+				labels: dist.map(d => d.sport),
+				datasets: [{
+					label: 'Athletes',
+					data: dist.map(d => d.count),
+					backgroundColor: '#8b5cf6',
+					borderRadius: 4
+				}]
 			},
-			options: {
-				responsive: true,
-				maintainAspectRatio: false,
-				plugins: { legend: { position: 'top' } },
-				scales: { y: { beginAtZero: true } }
-			}
+			options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
 		});
 	}
 
 	function renderPieChart(results) {
 		const ctx = document.getElementById("results-chart").getContext("2d");
 		if (pieChart) pieChart.destroy();
-		
 		pieChart = new Chart(ctx, {
 			type: 'doughnut',
 			data: {
 				labels: ['Wins', 'Losses', 'Draws'],
 				datasets: [{
 					data: [results.wins, results.losses, results.draws],
-					backgroundColor: ['#10b981', '#ef4444', '#f59e0b']
+					backgroundColor: ['#10b981', '#ef4444', '#f59e0b'],
+					borderWidth: 0
 				}]
 			},
-			options: {
-				responsive: true,
-				maintainAspectRatio: false,
-				plugins: { legend: { position: 'bottom' } }
-			}
+			options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { position: 'bottom' } } }
 		});
 	}
 
 	$("#refresh-dashboard").click(() => loadDashboard());
-
-	// Initial Load
 	loadDashboard();
 };

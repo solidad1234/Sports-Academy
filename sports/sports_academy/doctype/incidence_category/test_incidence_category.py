@@ -5,5 +5,5 @@
 from frappe.tests.utils import FrappeTestCase
 
 
-class TestMatchLog(FrappeTestCase):
+class TestIncidenceCategory(FrappeTestCase):
 	pass

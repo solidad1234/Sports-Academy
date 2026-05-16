@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\":\"MqYgzmDLsw\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Sports Academy</span>\",\"col\":12}},{\"id\":\"qDy1gFXWX-\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Sports Academy Dashboard\",\"col\":3}},{\"id\":\"gbp8yefZs_\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Matches\",\"col\":3}},{\"id\":\"WDsWd0FvXZ\",\"type\":\"card\",\"data\":{\"card_name\":\"Shortcuts\",\"col\":4}}]",
+ "content": "[{\"id\":\"MqYgzmDLsw\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Sports Academy</span>\",\"col\":12}},{\"id\":\"WDsWd0FvXZ\",\"type\":\"card\",\"data\":{\"card_name\":\"Shortcuts\",\"col\":4}},{\"id\":\"1y20pFS_BX\",\"type\":\"card\",\"data\":{\"card_name\":\"Dashboards\",\"col\":4}}]",
  "creation": "2026-05-08 10:25:29.717172",
  "custom_blocks": [],
  "docstatus": 0,
@@ -17,7 +17,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Shortcuts",
-   "link_count": 6,
+   "link_count": 7,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
@@ -77,13 +77,62 @@
    "is_query_report": 0,
    "label": "Injury Record",
    "link_count": 0,
-   "link_to": "Injury Record",
+   "link_to": "Incidence Record",
    "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Events",
+   "link_count": 0,
+   "link_to": "Event Log",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Dashboards",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Sports Dashboard",
+   "link_count": 0,
+   "link_to": "sports-dashboard",
+   "link_type": "Page",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Team Analytics",
+   "link_count": 0,
+   "link_to": "sports-management-dashboard",
+   "link_type": "Page",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Athlete Analytics",
+   "link_count": 0,
+   "link_to": "athlete-analytics",
+   "link_type": "Page",
    "onboard": 0,
    "type": "Link"
   }
  ],
- "modified": "2026-05-08 10:34:40.488620",
+ "modified": "2026-05-16 11:00:08.774370",
  "modified_by": "Administrator",
  "module": "Sports Academy",
  "name": "Sports Academy",
@@ -94,22 +143,6 @@
  "quick_lists": [],
  "roles": [],
  "sequence_id": 30.0,
- "shortcuts": [
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Sports Academy Dashboard",
-   "link_to": "sports-dashboard",
-   "type": "Page"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Matches",
-   "link_to": "Match Log",
-   "stats_filter": "[]",
-   "type": "DocType"
-  }
- ],
+ "shortcuts": [],
  "title": "Sports Academy"
 }
